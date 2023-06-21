@@ -1,0 +1,65 @@
+select first_name, nvl(to_char(commission_pct),'no commition') from hr.employees;
+
+
+    WHEN job_id = 'ST_MAN' THEN 'B'
+    WHEN job_id = 'IT_PROG' THEN 'C'
+       WHEN job_id = 'SA_REP' THEN 'D'
+    
+    ELSE '0'
+  END AS grade
+FROM hr.employees;
+
+SELECT Employee_Id, First_Name, Last_Name, Job_Id,
+  CASE Job_Id
+    WHEN 'JOB001' THEN 'Grade A'
+    WHEN 'JOB002' THEN 'Grade B'
+    WHEN 'JOB003' THEN 'Grade C'
+    ELSE 'Unknown Grade'
+  END AS Grade
+SELECT Employee_Id, First_Name, Last_Name, Job_Id FROM hr.employees;
+
+
+
+SELECT EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+ CASE 
+  WHEN job_id = 'ST_MAN' THEN 'B'
+    WHEN job_id = 'IT_PROG' THEN 'C'
+       WHEN job_id = 'SA_REP' THEN 'D'
+    ELSE '0'
+END  AS GRADE FROM hr.employees; 
+
+SELECT JOB_ID, CASE JOB_ID
+WHEN 'ST_MAN' THEN 'A'
+WHEN 'IT_PROG' THEN 'B'
+WHEN 'SA_REP' THEN 'C'
+WHEN 'ST_CLERK' THEN 'D'
+ ELSE '0' END AS GRADE FROM HR.EMPLOYEES;
+
+SELECT LAST_NAME|| ' Erns ' || salary|| ' monthly but wants ' || salary*3 Dream_Salary from hr.employees;
+
+select last_name, hire_date from employees;
+
+SELECT LAST_NAME|| ' Erns ' || salary|| ' monthly but wants ' || to_char(salary*3, '$99G999D999') Dream_Salary from hr.employees;
+
+--15
+select employee_id,first_name,LAST_NAME, salary 
+from employees
+where salary> ( select avg(salary) from employees where first_name like '%J%');
+
+--16
+select e.first_name, e.last_name, e.job_id, e.employee_id
+from employees e 
+join departments d on e.department_id = d.department_id 
+join locations l on d.LOCATION_ID= l.LOCATION_ID 
+where d.department_id= (select department_id from departments 
+where location_id = (selnbnect location_id from locations 
+where city ='Toronto'));
+
+66
+
+
+
+
+SELECT e.first_name, e.last_name, e.job_id, e.employee_id, d.DEPARTMENT_NAME
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id;

@@ -1,0 +1,108 @@
+select lpad('hasan',12,'-') from dual;
+
+select e.last_name, e.department_id, d.department_name
+from employees e left outer join departments d 
+on (e.department_id = d.department_id);
+
+select last_name, hire_date from employees where hire_date>=(
+select hire_date from employees where last_name='Davies') order by ;
+
+SELECT last_name, job_id, salary
+FROM employees
+WHERE job_id =
+(SELECT job_id
+FROM employees
+WHERE last_name = 'Davies')
+AND salary >
+(SELECT salary
+FROM employees
+WHERE last_name = 'Davies');
+
+
+SELECT last_name, job_id, salary
+FROM employees
+WHERE salary =
+(SELECT MIN(salary)
+FROM employees);
+
+SELECT department_id, MIN(salary)
+FROM employees
+GROUP BY department_id
+HAVING MIN(salary) >
+(SELECT MIN(salary)
+FROM employees
+WHERE department_id = 30);
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE (salary, department_id) IN
+(SELECT min(salary), department_id
+FROM employees
+GROUP BY department_id)
+ORDER BY department_id;
+        
+SELECT first_name, salary from employees WHERE salary=3000 and manager_id=121;   
+SELECT first_name, salary
+FROM employees
+WHERE salary = 3000 AND manager_id = 121;
+
+SELECT first_name, salary from employees WHERE employee_id in (134,159,183);
+
+--SELECT first_name, salary from employees WHERE salary from (1000,3000);
+
+SELECT first_name, salary
+FROM employees
+WHERE salary BETWEEN 1000 AND 3000;
+
+SELECT first_name, salary
+FROM employees
+WHERE salary BETWEEN (select min(salary)from employees)  AND 2500 order by salary;
+
+SELECT first_name, salary
+FROM employees
+WHERE salary<=2500;
+
+SELECT first_name, salary, manager_id
+FROM employees
+WHERE manager_id NOT BETWEEN 100 and 200;
+
+SELECT *
+FROM employees
+WHERE manager_id NOT BETWEEN 100 and 200;
+
+SELECT max(salary) 
+FROM employees
+        WHERE salary <(SELECT  max(salary) 
+        FROM employees);
+
+SELECT MAX(salary) AS second_max_salary
+FROM employees
+WHERE salary < (
+    SELECT MAX(salary)
+    FROM employees
+);
+
+SELECT *
+    FROM employees
+where salary= (select  max(salary) from employees
+where salary <(select max(salary) from employees));
+
+SELECT first_name, last_name, hire_date
+    FROM employees where first_name and department_name in 
+    (SELECT first_name FROM employees where first_name !='clara' , SELECT first_name FROM employees where first_name !='clara' ) ;
+
+
+SELECT employee_id, first_name, last_name, 
+    FROM employees where first_name like 'T%';
+    
+    and department_name in 
+    (SELECT first_name FROM employees where first_name !='clara' , SELECT first_name FROM employees where first_name !='clara' ) ;
+
+    
+ SELECT first_name, last_name, hire_date, department_id 
+    FROM employees where department_id =   
+    (SELECT department_id FROM employees where first_name ='Clara' ) and first_name !='Clara'  order by first_name;
+    
+    
+
+
