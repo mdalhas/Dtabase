@@ -1,0 +1,19 @@
+CREATE TABLE EMP_173962 (
+EID int primary key, 
+ENAME varchar2(30), 
+eSalary number (8,2), 
+eAddress varchar2(30));
+
+select * from EMP_173962
+
+insert into  EMP_173962 (EID,ENAME,eSalary,eAddress)
+VALUES
+(1,'hASAN', 10000,'dHAKA');
+
+insert into  EMP_173962 (EID,ENAME,eSalary,eAddress)
+VALUES
+(2,'sahASAN', 19000,'bHOLAAA');
+
+insert into  EMP_173962 (EID,ENAME,eSalary,eAddress)
+VALUES
+(4,'MUSLEM', 15000,'BOGURA');
